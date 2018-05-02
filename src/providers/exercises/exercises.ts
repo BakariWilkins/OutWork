@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage} from "@ionic/storage";
 
 /*
   Generated class for the ExercisesProvider provider.
@@ -18,9 +19,10 @@ export class ExercisesProvider {
       "Bench Press",
       "Bicep Curls",
       "Pull Ups"
+  //    reinitialize values here with what's in storage on load
   ];
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public storage: Storage) {
 
   }
 
@@ -30,5 +32,6 @@ export class ExercisesProvider {
 
   public addExercises(exercise){
       this.exercises.push(exercise);
+      this.storage.set("exercises", JSON.stringify(this.exercises));
   }
 }

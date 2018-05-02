@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, reorderArray } from 'ionic-angular';
+import { IonicPage, /*NavController,*/ AlertController, reorderArray } from 'ionic-angular';
 import { ExercisesProvider } from "../../providers/exercises/exercises";
 
 /**
@@ -26,7 +26,7 @@ export class ExercisesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExercisesPage');
-      this.exerciseProvider.getExercises();
+      this.exercisesProvider.getExercises();
   }
 
   itemReordered($event){
@@ -57,7 +57,7 @@ export class ExercisesPage {
                       let exerciseText = inputData.addExerciseInput;
                       // this.exercises.push( exerciseText );
 
-                      this.exerciseProvider.addExercises(exerciseText);
+                      this.exercisesProvider.addExercises(exerciseText);
                   }
               }
           ]

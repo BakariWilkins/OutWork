@@ -24,16 +24,14 @@
     <ion-item-sliding *ngFor="let exercise of exercises">
       <ion-item>{{ exercise }}</ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="openExerAlert()">
-          <ion-icon name="plus"></ion-icon>
-        </button>
+
       </ion-item-options>
     </ion-item-sliding>
 
     <!--    -->
   </ion-list>
-  <ion-fab right bottom>
-    <button ion-fab>
+  <ion-fab right bottom >
+    <button ion-fab (click)="openExerciseAlert()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
