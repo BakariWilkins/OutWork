@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, /*NavController,*/ AlertController, reorderArray } from 'ionic-angular';
+import { RoutinesProvider } from "../../providers/routines/routines";
 
 /**
  * Generated class for the RoutinesPage page.
@@ -10,16 +11,59 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-routines',
-  templateUrl: 'routines.html',
+    selector: 'page-routines',
+    templateUrl: 'routines.html',
 })
 export class RoutinesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    public routines = [];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RoutinesPage');
-  }
+    public reorderIsEnabled = false;
+
+    constructor(/*public navCtrl: NavController,*/ public routinesProvider: RoutinesProvider, public alertController: AlertController) {
+        // this.routines = this.routinesProvider.getRoutines();
+    }
+
+    ionViewDidLoad() {
+        console.log();
+        this.routines = this.routinesProvider.getRoutines();
+        console.log(this.routines);
+    }
+
+    itemReordered($event){
+        reorderArray(this.routines, $event);
+    }
+
+    toggleReorder(){
+        this.reorderIsEnabled = !this.reorderIsEnabled;
+    }
+
+    openRoutineAlert() {
+        let addRoutineAlert = this.alertController.create({
+            title: "Add an Routine",
+            message: "Enter your routine",
+            inputs: [
+                {
+                    type: "text",
+                    name: "addRoutineInput"
+                }
+            ],
+            buttons: [
+                {
+                    text: "Cancel"
+                },
+                {
+                    text: "Add Routine",
+                    handler: inputData => {
+                        let routineText = inputData.addRoutineInput;
+                        // this.routines.push( routineText );
+
+                        this.routinesProvider.addRoutine(routineText);
+                    }
+                }
+            ]
+        });
+        addRoutineAlert.present();
+    }
 
 }

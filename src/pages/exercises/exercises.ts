@@ -21,12 +21,13 @@ export class ExercisesPage {
   public reorderIsEnabled = false;
 
   constructor(/*public navCtrl: NavController,*/ public exercisesProvider: ExercisesProvider, public alertController: AlertController) {
-      this.exercises = this.exercisesProvider.getExercises();
+      // this.exercises = this.exercisesProvider.getExercises();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExercisesPage');
-      this.exercisesProvider.getExercises();
+    console.log();
+      this.exercises = this.exercisesProvider.getExercises();
+      console.log(this.exercises);
   }
 
   itemReordered($event){
@@ -57,7 +58,7 @@ export class ExercisesPage {
                       let exerciseText = inputData.addExerciseInput;
                       // this.exercises.push( exerciseText );
 
-                      this.exercisesProvider.addExercises(exerciseText);
+                      this.exercisesProvider.addExercise(exerciseText);
                   }
               }
           ]

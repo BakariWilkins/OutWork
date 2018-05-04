@@ -14,6 +14,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import {HttpClientModule} from "@angular/common/http";
 import { ExercisesProvider } from '../providers/exercises/exercises';
+import { RoutinesProvider } from '../providers/routines/routines';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { ExercisesProvider } from '../providers/exercises/exercises';
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        ExercisesProvider
+        ExercisesProvider,
+    RoutinesProvider
     ]
 })
 export class AppModule {
