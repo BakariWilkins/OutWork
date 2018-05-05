@@ -6,7 +6,8 @@ import {MyApp} from './app.component';
 import {ExercisesPage} from '../pages/exercises/exercises';
 import {RoutinesPage} from '../pages/routines/routines';
 import {WorkoutPage} from '../pages/workout/workout';
-import {DataPage} from '../pages/data/data';
+
+// import {DataPage} from '../pages/data/data';
 import {TabsPage} from '../pages/tabs/tabs';
 
 import {StatusBar} from '@ionic-native/status-bar';
@@ -22,7 +23,7 @@ import { RoutinesProvider } from '../providers/routines/routines';
         ExercisesPage,
         RoutinesPage,
         WorkoutPage,
-        DataPage,
+        // DataPage,
         TabsPage
     ],
     imports: [
@@ -38,7 +39,7 @@ import { RoutinesProvider } from '../providers/routines/routines';
         ExercisesPage,
         RoutinesPage,
         WorkoutPage,
-        DataPage,
+        // DataPage,
         TabsPage
     ],
     providers: [
@@ -46,7 +47,7 @@ import { RoutinesProvider } from '../providers/routines/routines';
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         ExercisesProvider,
-    RoutinesProvider
+        RoutinesProvider
     ]
 })
 export class AppModule {

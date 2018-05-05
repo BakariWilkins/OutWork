@@ -24,7 +24,9 @@
     <ion-item-sliding *ngFor="let routine of routines">
       <ion-item>{{ routine }}</ion-item>
       <ion-item-options side="right">
-
+        <button ion-button color="primary" (click)="">
+          <ion-icon name="right-arrow"></ion-icon>
+        </button>
       </ion-item-options>
     </ion-item-sliding>
 

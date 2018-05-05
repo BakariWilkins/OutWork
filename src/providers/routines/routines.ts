@@ -1,4 +1,8 @@
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Storage} from "@ionic/storage";
+
+// import {ExercisesProvider} from "../exercises/exercises";
 
 /*
   Generated class for the RoutinesProvider provider.
@@ -9,19 +13,27 @@ import {Storage} from "@ionic/storage";
 @Injectable()
 export class RoutinesProvider {
 
+    // private exercises = [];
     private routines = [
-        "Push Ups",
-        "Sit Ups",
-        "1-mile Run",
-        "Planks",
-        "Bench Press",
-        "Bicep Curls",
-        "Pull Ups",
-        "Squats"
-        //    reinitialize values here with what's in storage on load
-    ];
+        {
+            "routineName": "Body Weight",
+            "routineExercises": []
+        },
+        {
+            "routineName": "Leg Day",
+            "routineExercises": []
+        },
+        {
+            "routineName": "Upper Body",
+            "routineExercises": []
+        },
+        {
+            "routineName": "Core",
+            "routineExercises": []
+        }
+    ]; //    reinitialize values here with what's in storage on load
 
-    constructor(public http: HttpClient, public storage: Storage) {
+    constructor(public http: HttpClient, public storage: Storage/*, public exercisesProvider: ExercisesProvider*/) {
 
     }
 
@@ -34,8 +46,8 @@ export class RoutinesProvider {
         this.storage.set("routines", JSON.stringify(this.routines));
     }
 
-    public deleteRoutine(routine) {
-        this.routines.pop(routine);
-        this.storage.set("routines", JSON.stringify(this.routines));
-    }
+    // public deleteRoutine(routine) {
+    //     this.routines.pop(routine);
+    //     this.storage.set("routines", JSON.stringify(this.routines));
+    // }
 }

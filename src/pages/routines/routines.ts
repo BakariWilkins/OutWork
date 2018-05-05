@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, /*NavController,*/ AlertController, reorderArray } from 'ionic-angular';
-import { RoutinesProvider } from "../../providers/routines/routines";
+import { IonicPage, NavController, AlertController, reorderArray } from 'ionic-angular';
+import {ExercisesProvider} from "../../providers/exercises/exercises";
+import {RoutinesProvider} from "../../providers/routines/routines";
 
 /**
  * Generated class for the RoutinesPage page.
@@ -17,10 +18,10 @@ import { RoutinesProvider } from "../../providers/routines/routines";
 export class RoutinesPage {
 
     public routines = [];
-
+    public exercises = [];
     public reorderIsEnabled = false;
 
-    constructor(/*public navCtrl: NavController,*/ public routinesProvider: RoutinesProvider, public alertController: AlertController) {
+    constructor(public navCtrl: NavController, public routinesProvider: RoutinesProvider, public alertController: AlertController, public exercisesProvider: ExercisesProvider) {
         // this.routines = this.routinesProvider.getRoutines();
     }
 
@@ -39,31 +40,38 @@ export class RoutinesPage {
     }
 
     openRoutineAlert() {
-        let addRoutineAlert = this.alertController.create({
-            title: "Add an Routine",
-            message: "Enter your routine",
-            inputs: [
-                {
-                    type: "text",
-                    name: "addRoutineInput"
-                }
-            ],
-            buttons: [
-                {
-                    text: "Cancel"
-                },
-                {
-                    text: "Add Routine",
-                    handler: inputData => {
-                        let routineText = inputData.addRoutineInput;
-                        // this.routines.push( routineText );
+        let addRoutineAlert = this.alertController.create();
 
-                        this.routinesProvider.addRoutine(routineText);
-                    }
-                }
-            ]
+        addRoutineAlert.setTitle('Create Routine');
+
+        addRoutineAlert.addInput({
+            type: 'text',
+            name: 'routineTitle',
+            value: 'routineTitle',
+            placeholder: 'Routine Title'
+
+        });
+
+        this.exercises = this.exercisesProvider.getExercises();
+
+        for (let i=0;i<this.exercises.length;i++){
+            addRoutineAlert.addInput({
+                type: 'checkbox',
+                label: this.exercises[i],
+                value: this.exercises[i],
+            });
+        }
+
+
+
+        addRoutineAlert.addButton('Cancel');
+        addRoutineAlert.addButton({
+            text: 'Okay',
+            handler: data => {
+                console.log('Checkbox data:', data);
+
+            }
         });
         addRoutineAlert.present();
     }
-
 }
